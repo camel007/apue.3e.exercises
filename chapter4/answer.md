@@ -20,7 +20,10 @@ creat以只写权限打开文件，如果foo, bar不具有写权限，会提示�
 
 ## 4.5  In Section 4.12, we said that a file size of 0 is valid for a regular file. We also said that the st_size field is defined for directories and symbolic links. Should we ever see a file size of 0 for a directory or a symbolic link?  
 
-4.14节文件系统中有介绍
+4.14节文件系统中有介绍  
 在文件系统中，目录项保存的是文件名和i-node的编号，所以不可能是0  
 symbolic link的大小是符号指向的文件的名字的长度，不管实际指向的文件是否存在  
 
+## 4.6 Write a utility like cp(1) that copies a file containing holes, without writing the bytes of 0 to the output file.  
+ 
+OSX 不知道怎么启动SEEK_HOLE， SEEK_DATA，ex4_6.c暂无调试  
