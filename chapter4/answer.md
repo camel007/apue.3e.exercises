@@ -27,3 +27,19 @@ symbolic link的大小是符号指向的文件的名字的长度，不管实际�
 ## 4.6 Write a utility like cp(1) that copies a file containing holes, without writing the bytes of 0 to the output file.  
  
 OSX 不知道怎么启动SEEK_HOLE， SEEK_DATA，ex4_6.c暂无调试  
+
+## 4.7 Note in the output from the ls command in Section 4.12 that the files core and core.copy have different access permissions. If the umask value didn’t change between the creation of the two files, explain how the difference could have occurred  
+
+core文件为creat或者Open创建的，可以额外指定权限位，生成core.copy的时候只生效umask屏蔽字，所以会改变core.copy的权限  
+
+## 4.8 When running the program in Figure 4.16, we check the available disk space with the df(1) command. Why didn’t we use the du(1) command?  
+
+Linux du （英文全拼：disk usage）命令用于显示目录或文件的大小。  
+Linux df（英文全拼：disk free） 命令用于显示目前在 Linux 系统上的文件系统磁盘使用情况统计。  
+
+## 4.9 In Figure 4.20, we show the unlink function as modifying the changed-status time of the file itself. How can this happen?  
+
+i-node包含指向数据块的指针， unlink一个文件会同步删除对应的i-node中的指向数据块的指针，根据书中介绍状态更改时间为该文件i-node最后一次被修改的时间  
+
+## 4.10 In Section 4.22, how does the system’s limit on the number of open files affect the myftw function?  
+
