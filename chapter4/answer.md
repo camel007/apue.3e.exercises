@@ -43,3 +43,15 @@ i-node包含指向数据块的指针， unlink一个文件会同步删除对应�
 
 ## 4.10 In Section 4.22, how does the system’s limit on the number of open files affect the myftw function?  
 
+影响递归深度  
+
+## 4.11 In Section 4.22, our version of ftw never changes its directory. Modify this routine so that each time it encounters a directory, it uses the chdir function to change to that directory, allowing it to use the filename and not the pathname for each call to lstat. When all the entries in a directory have been processed, execute chdir(".."). Compare the time used by this version and the version in the text.  
+
+ex4_11.c
+
+## 4.12 Each process also has a root directory that is used for resolution of absolute pathnames. This root directory can be changed with the chroot function. Look up the description for this function in your manuals. When might this function be useful?  
+
+https://man7.org/linux/man-pages/man2/chroot.2.html  
+
+## 4.13 How can you set only one of the two time values with the utimes function?  
+
