@@ -55,3 +55,26 @@ https://man7.org/linux/man-pages/man2/chroot.2.html
 
 ## 4.13 How can you set only one of the two time values with the utimes function?  
 
+用stat保存访问时间和修改时间的其中一个，只设置另一个  
+
+ex4_13.c_bak  macos的stat函数和linux不一样，没有st_atim的函数  
+
+## 4.14 Some versions of the finger(1) command output ‘‘New mail received ...’’ and ‘‘unread since ...’’ where ... are the corresponding times and dates. How can the program determine these two times and dates?  
+
+从文件的状态修改时间，访问时间和修改时间来决定的  
+
+## 4.15 Examine the archive formats used by the cpio(1) and tar(1) commands. (These descriptions are usually found in Section 5 of the UNIX Programmer’s Manual.) How many of the three possible time values are saved for each file? When a file is restored, what value do you think the access time is set to, and why?  
+
+## 4.16 Does the UNIX System have a fundamental limitation on the depth of a directory tree? To find out, write a program that creates a directory and then changes to that directory, in a loop. Make certain that the length of the absolute pathname of the leaf of this directory is greater than your system’s PATH_MAX limit. Can you call getcwd to fetch the directory’s pathname? How do the standard UNIX System tools deal with this long pathname? Can you archive the directory using either tar or cpio?  
+
+
+在macos上尝试，深度非常深，22000+的时候给停了，我这里MAX_PATH=1024,leaf pathname肯定超过了；然后悲催的删掉这个目录很麻烦，只能chdir进一定的深度，然后删掉，然后继续删掉
+tar的时候会提示错误，“tar: Error exit delayed from previous errors.”可能是深度不够  
+
+## 4.17 In Section 3.16, we described the /dev/fd feature. For any user to be able to access these files, their permissions must be rw-rw-rw-. Some programs that create an output file delete the file first, in case it already exists, ignoring the return code:
+        unlink(path);
+        if ((fd = creat(path, FILE_MODE)) < 0)
+err_sys(...);
+What happens if path is /dev/fd/1?  
+
+0,1,2,应该是stdin, stdout, stderr，随便删不知道会不会有问题，没尝试
